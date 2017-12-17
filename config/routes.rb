@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root to: 'todos#index'
   resources :todos, only: [:index, :show]
   resources :pendings, only: :update
-  devise_for :users
+  devise_for :users, controllers: {
+        registrations: 'users/registrations'
+      }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
