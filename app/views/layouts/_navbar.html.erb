@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Todo List "18" Edition </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <span>
+    <% if user_signed_in? %>
+    <button type="button" class="btn btn-primary">
+      Completed Todos <span class="badge badge-light">
+        <span class="navbar-text">
+        <%= current_user.pendings.where(done: true).count %> / <%= current_user.pendings.count %>
+        </span>
+        <% end %>
+    </button>
+  </span>
+
+    <form class="form-inline my-2 my-lg-0">
+      <button type="submit" class="btn btn-link btn-logout">
+        <% if user_signed_in? %>
+        <%= link_to 'Sign_out', destroy_user_session_path,  method: 'delete'%>
+        <% end %>
+      </button>
+    </form>
+  </div>
+</nav>

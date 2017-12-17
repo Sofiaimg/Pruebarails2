@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<div class="well">
+  <span> <%= @todo.picture %></td></span>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Todo Description</th>
+      <th scope="col">Status</th>
+      <th scope="col">Completed at</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @todo.description %></td>
+      <td> <%= if @todo.done? %>
+        <span>pending</span>
+        <% else %>
+        <span>completed</span>
+        <% end %>
+     	</td>
+      <td> Created : <%= time_ago_in_words @todo.created_at %></td>
+    </tr>
+  </tbody>
+</table>
