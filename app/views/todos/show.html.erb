@@ -39,36 +39,38 @@
 <hr>
 
 <table class="table">
+  <h4>Ranking</h4>
+  <thead>
+    <tr>
+      <th scope="col">User</th>
+      <th scope="col">Profile Picture</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+
+          <% @todo.pendings.limit(5).order('created_at DESC').each do |pending|  %>
+        <td> <%= pending.user.name  %>   </td>
+        <td> <%= image_tag pending.user.photo, class:'img-responsive', style:'height:100px' %> </td>
+    </tr>
+    <% end %>
+
+  </tbody>
+</table>
+
+<hr>
+
+<table class="table">
   <thead>
     <tr>
       <th scope="col">Users who already finished this Todo</th>
-      <th scope="col">User Photo</th>
     </tr>
   </thead>
   <tbody>
     <tr>
         <% @todo.pendings.where(done: true).each do |pending| %>
-
-      <td><%= pending.user.name %></td>
-      <td> <%= image_tag pending.user.photo %>
-      </div> </td>
-      <% end %>
+      <td><%= pending.user.name  %></td>
     </tr>
   </tbody>
-</table>
-
-<hr>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Todo Description</th>
-      <th scope="col">Completed at</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-        <td><%= @todo.description %> </td>
-        <td> Created : <%= time_ago_in_words @todo.created_at%></td>
-    </tr>
-  </tbody>
+  <% end %>
 </table>
