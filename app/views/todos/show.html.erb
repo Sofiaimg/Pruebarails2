@@ -1,8 +1,17 @@
 <p id="notice"><%= notice %></p>
 
+<%= link_to 'Back', root_path %>
 <div class="well">
-  <span> <%= @todo.picture %></td></span>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="card">
+      <span> <%= image_tag @todo.picture, class: 'card-img-top'%></td></span>
+    </div>
+  </div>
 </div>
+</div>
+
 
 <table class="table">
   <thead>
@@ -14,14 +23,52 @@
   </thead>
   <tbody>
     <tr>
-      <td><%= @todo.description %></td>
-      <td> <%= if @todo.done? %>
-        <span>pending</span>
-        <% else %>
-        <span>completed</span>
-        <% end %>
-     	</td>
-      <td> Created : <%= time_ago_in_words @todo.created_at %></td>
+        <td><%= @todo.description %> </td>
+        <td> <% if @todo.pendings.where(done: true)%>
+          <p> Ready </p>
+          <% else %>
+          <p> Pending </p>%>
+          <% end %>
+          </td>
+
+        <td> Created : <%= time_ago_in_words @todo.created_at%></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Users who already finished this Todo</th>
+      <th scope="col">User Photo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <% @todo.pendings.where(done: true).each do |pending| %>
+
+      <td><%= pending.user.name %></td>
+      <td> <%= image_tag pending.user.photo %>
+      </div> </td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Todo Description</th>
+      <th scope="col">Completed at</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <td><%= @todo.description %> </td>
+        <td> Created : <%= time_ago_in_words @todo.created_at%></td>
     </tr>
   </tbody>
 </table>

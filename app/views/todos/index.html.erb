@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<h1>Tasks</h1>
+<h1>Todos</h1>
 
   <div class="row">
     <% @user.pendings.each_slice(3) do |row| %>
@@ -12,7 +12,7 @@
           </div>
 
           <% if pending.done? %>
-          <button type="button" class="btn btn-outline-primary"><%= link_to 'Lista', pending_path(pending.id), method: :patch %></button>
+          <button type="button" class="btn btn-outline-success"><%= link_to 'Lista', pending_path(pending.id), method: :patch %></button>
           <% else %>
           <button type="button" class="btn btn-outline-danger"><%= link_to 'Pendiente', pending_path(pending.id), method: :patch %></button>
           <% end %>
@@ -21,6 +21,6 @@
       </div>
 
     <% end %>
-        <div class="w-100" style="margin-top:200px"></div>
+        <div class="w-100" style="margin-top:50px"></div>
       <% end %>
       </div>
