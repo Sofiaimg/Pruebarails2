@@ -48,8 +48,7 @@
   </thead>
   <tbody>
     <tr>
-
-          <% @todo.pendings.limit(5).order('created_at DESC').each do |pending|  %>
+        <% @todo.pendings.limit(5).order('created_at ASC').each do |pending|  %>
         <td> <%= pending.user.name  %>   </td>
         <td> <%= image_tag pending.user.photo, class:'img-responsive', style:'height:100px' %> </td>
     </tr>
